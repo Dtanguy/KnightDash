@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div>
     <nav>
       <h2>SECTION: {{ $store.state.section.name }}</h2>
       <div id="team">
@@ -14,11 +14,46 @@
       </div>
     </nav>
 
-    <section id="knight">
-      <div>
-        <p class="firstMaj">{{ knight.name }}</p>
-        <img :src="armorImg(knight.type)" alt="" />
-        <div id="definitrea" class="logo width100">
+    <section class="content">
+      <div class="knight">
+        <table class="table">
+          <tbody>
+            <tr>
+              <td><p class="firstMaj">chevalier:</p></td>
+              <td>
+                <p class="firstMaj">{{ knight.name }}</p>
+              </td>
+            </tr>
+            <tr>
+              <td><p class="firstMaj">nom:</p></td>
+              <td>
+                <p class="firstMaj">{{ knight.nom }}</p>
+              </td>
+            </tr>
+            <tr>
+              <td><p class="firstMaj">prenom:</p></td>
+              <td>
+                <p class="firstMaj">{{ knight.prenom }}</p>
+              </td>
+            </tr>
+            <tr>
+              <td><p class="firstMaj">IA:</p></td>
+              <td>
+                <p class="firstMaj">{{ knight.ia }}</p>
+              </td>
+            </tr>
+            <tr>
+              <td><p class="firstMaj">blason:</p></td>
+              <td>
+                <p class="firstMaj">{{ knight.blason }}</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <img class="knightImg" :src="armorImg(knight.type)" />
+
+        <div class="stats1">
           <div class="txtDefinitrea">
             <p>{{ knight.stats.init }}</p>
             <p>INITIATIVE</p>
@@ -34,9 +69,9 @@
         </div>
       </div>
 
-      <div id="chiffres">
-        <div id="points">
-          <div v-for="(ico, life) in $store.state.life" :key="life">
+      <div class="chiffres" style="border: 1px solid red;">
+        <div class="points">
+          <div class="point" v-for="(ico, life) in $store.state.life" :key="life">
             <img :src="ico" alt="" />
             <div class="nav-data">
               <p>{{ knight.life[life][0] }}</p>
@@ -44,17 +79,25 @@
             </div>
           </div>
         </div>
-        <div id="stats">
-          <div class="trait" v-for="(ico, aspect) in $store.state.aspects" :key="aspect">
-            <p><img :src="ico" alt="" />{{ aspect }}<span>6</span></p>
-            <p class="firstMaj" v-for="(val, name) in knight.stats[aspect]" :key="name">
-              {{ name }}
-              <span>
-                {{ val[0] }}
-                <sup class="od">{{ val[1] }}</sup>
-              </span>
-            </p>
+
+        <div style="border: 1px solid red;">
+          <div class="traits">
+            <div class="trait" v-for="(ico, aspect) in $store.state.aspects" :key="aspect">
+              <p>
+                <img :src="ico" alt="" />{{ aspect }}<span>{{ knight.stats[aspect].val }}</span>
+              </p>
+
+              <p class="firstMaj" v-for="(val, name) in knight.stats[aspect]" :key="name">
+                {{ name != "val" ? name : "" }}
+                <span v-if="name != 'val'">
+                  {{ val[0] }}
+                  <sup class="od">{{ val[1] }}</sup>
+                </span>
+              </p>
+            </div>
           </div>
+
+          <div class="trait" style="height: 400px;  margin-top:2em;"></div>
         </div>
       </div>
     </section>
@@ -89,6 +132,7 @@ export default {
 </script>
 
 <style scoped>
+/* TOP */
 nav {
   height: 4em;
   background-color: rgba(0, 0, 0, 0.3);
@@ -143,30 +187,52 @@ nav #teammates {
   border: 1px solid rgba(255, 255, 255, 0.8);
 }
 
-#knight > div:first-child {
-  padding-top: 1em;
-  width: 30%;
-  position: relative;
-  display: inline-block;
+.content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 
-#knight > div:first-child p:first-child {
+/* LEFT */
+.knight {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.table {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+td {
+  text-align: start;
+  font-size: 1em;
+  height: 10px;
+  border-bottom: 0.1em solid #ddd;
+  padding-left: 5px;
+}
+
+.knightImg {
+  margin: 0;
+}
+
+.stats1 {
+  padding-top: 1em;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-top: 0.1em solid #ddd;
+  padding: 1em 0 2em 0;
+  font-size: 0.7em;
+}
+
+.knight > div:first-child p:first-child {
   font-size: 1.5em;
   text-align: center;
   font-weight: 500;
 }
 
-#knight .width100 {
-  width: 100%;
-  position: absolute;
-  background-color: rgba(0, 0, 0, 0.5);
-  border-top: 0.1em solid #ddd;
-  margin: 0;
-  padding: 1em 0 2em 0;
-  bottom: 0;
-}
-
-#knight .txtDefinitrea {
+.txtDefinitrea {
   display: inline-block;
   color: white;
   font-size: 1em;
@@ -175,7 +241,7 @@ nav #teammates {
   text-align: center;
 }
 
-#knight .txtDefinitrea p:first-child {
+.txtDefinitrea p:first-child {
   font-size: 3em;
   border-radius: 2em;
   width: 1em;
@@ -184,59 +250,49 @@ nav #teammates {
   text-align: center;
 }
 
-#chiffres {
-  width: 69%;
+/* RIGHT */
+.chiffres {
+  width: 60%;
   display: inline-block;
   vertical-align: top;
-}
-
-#points,
-#stats {
   font-family: "Asap", Helvetica, sans-serif;
-  width: 100%;
-  display: inline-block;
-  vertical-align: top;
 }
 
-#points #cdf {
-  width: auto;
-  padding-right: 1em;
+.points {
+  margin-top: 2em;
+  border: 1px solid blue;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
-#points #cdf p {
-  font-size: 1em;
-  width: auto;
-  top: 50%;
-  left: 24%;
-  position: absolute;
+.point {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  min-width: 100px;
+  border: 1px solid blue;
 }
 
-#points > div {
-  padding-top: 1em;
-  width: 7.5em;
-  display: inline-block;
-  position: relative;
-}
-
-#points img {
+.point img {
   width: 3em;
   display: inline-block;
   vertical-align: middle;
 }
 
-#points .nav-data {
+.point .nav-data {
   display: inline-block;
   vertical-align: middle;
   position: relative;
 }
 
-#points .nav-data p:first-child {
+.point .nav-data p:first-child {
   font-size: 1.2em;
   text-align: center;
   width: 2em;
 }
 
-#points .nav-data p:last-child {
+.point .nav-data p:last-child {
   font-size: 0.8em;
   text-align: center;
   padding: 0.2em;
@@ -245,18 +301,18 @@ nav #teammates {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
-#stats {
+.traits {
   margin-top: 2em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .trait {
-  display: inline-block;
   background-color: rgba(0, 0, 0, 0.4);
   margin: 0 0.2em;
   padding: 0.5em;
-  vertical-align: top;
-  width: 17%;
-  position: relative;
+  min-width: 200px;
 }
 
 .trait p:first-child {
@@ -267,7 +323,6 @@ nav #teammates {
 }
 
 .trait p:first-child span {
-  position: absolute;
   color: #fff9c4;
   right: 0.5em;
   font-size: 1.3em;

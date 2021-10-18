@@ -56,6 +56,11 @@ export default new Vuex.Store({
       /* 1 */
       ecarlate: {
         name: "ecarlate",
+        nom: "",
+        prenom: "",
+        ia: "ALISE",
+        section: "121",
+        blason: "",
         type: "barbarian",
         life: {
           cdf: [12, 0],
@@ -71,28 +76,33 @@ export default new Vuex.Store({
           def: 1,
           react: 1,
           chair: {
+            val: 6,
             deplacement: [3, 0],
             force: [6, 1],
-            endurence: [4, 0]
+            endurance: [4, 0]
           },
           bete: {
+            val: 4,
             hargne: [3, 1],
             combat: [4, 1],
-            instinc: [2, 0]
+            instinct: [2, 0]
           },
           machine: {
+            val: 7,
             tir: [1, 0],
             savoir: [1, 0],
             technique: [1, 0]
           },
           dame: {
+            val: 2,
             aura: [1, 0],
             parole: [1, 0],
             sangfroid: [2, 0]
           },
           masque: {
+            val: 3,
             discretion: [1, 0],
-            dexteritee: [1, 0],
+            dexterite: [1, 0],
             perception: [1, 0]
           }
         }
