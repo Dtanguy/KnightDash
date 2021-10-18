@@ -4,7 +4,7 @@
 Dashboard for Knight role play (stats, dice rolls and damages management).
 
 <p align="center">
-	<img src="https://raw.githubusercontent.com/dtanguy/KnightDash/master/src/assets/readme/1.jpg" width="80%">
+	<img src="https://raw.githubusercontent.com/dtanguy/KnightDash/master/src/assets/readme/1.jpg" width="100%">
 </p>
 
 ## Project setup
@@ -21,7 +21,7 @@ npm run dev
 
 ### Knight JSON configuration
 
-```
+```json
 ecarlate: {
         infos: {
           chevalier: "ecarlate",
