@@ -21,7 +21,7 @@ npm run dev
 
 ### Knight JSON configuration
 
-```json
+```javascript
 ecarlate: {
         infos: {
           chevalier: "ecarlate",
