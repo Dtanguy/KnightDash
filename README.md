@@ -25,6 +25,7 @@ npm run dev
 ecarlate: {
   infos: {
     chevalier: "ecarlate",
+		coterie: "121",
     nom: "",
     prenom: "",
     IA: "ALISE",

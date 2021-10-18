@@ -21,7 +21,7 @@ export default new Vuex.Store({
       hope: require("@/assets/icons/hope.svg"),
     },
     current: "ecarlate",
-    section: {
+    coteries: {
       name: "121",
       logo: require("@/assets/icons/team.svg"),
       members: ["ecarlate", "2", "3", "4", "5", "6"]
@@ -57,6 +57,7 @@ export default new Vuex.Store({
       ecarlate: {
         infos: {
           chevalier: "ecarlate",
+          coterie: "121",
           nom: "",
           prenom: "",
           IA: "ALISE",

@@ -21,14 +21,14 @@
     <!-- mobile -->
     <div class="fixe"></div>
 
-    <h2 class="title fixe">SECTION: {{ $store.state.section.name }}</h2>
+    <h2 class="title fixe">COTERIE: {{ $store.state.coteries.name }}</h2>
 
     <div class="team fixe">
       <div class="logo">
-        <img :src="$store.state.section.logo" alt="" />
+        <img :src="$store.state.coteries.logo" alt="" />
       </div>
       <div class="teammates">
-        <a v-for="(member, i) in $store.state.section.members" :key="i" @click="goto(i)">
+        <a v-for="(member, i) in $store.state.coteries.members" :key="i" @click="goto(i)">
           <img :src="armorFace($store.state.members[member].infos.type)" alt="" />
         </a>
       </div>
