@@ -86,13 +86,16 @@
                 <label class="dline1" style="margin-right: 15px;" for="tentacles">Espoir:</label>
                 <input class="dline2" type="number" id="tentacles" name="tentacles" min="0" max="1000" v-model="dEsp" />
               </div>
-              <button class="button" @click="dealDamage">
+              <button class="button" @click="dealDamage()">
                 {{ `Hit me daddy ❤️` }}
               </button>
             </div>
           </div>
         </div>
       </div>
+
+      <audio ref="audio1" src="@/assets/audio/roblox-death-sound.mp3" preload muted style="display: hidden;"></audio>
+      <audio ref="audio2" src="@/assets/audio/wilhelm.wav" preload muted style="display: hidden;"></audio>
     </section>
   </div>
 </template>
@@ -130,8 +133,17 @@ export default {
         let cdf = this.knight.life.cdf[0];
         this.knight.life.shield[1] -= this.dPas - cdf;
         this.knight.life.health[1] -= Math.trunc((this.dPas - cdf) / 5);
+        let audio1 = this.$refs.audio1;
+        audio1.play();
       } else if (this.dSan > 0) {
         this.knight.life.health[1] -= this.dSan;
+        if (this.knight.life.health[1] < 1) {
+          let audio2 = this.$refs.audio2;
+          audio2.play();
+        } else {
+          let audio1 = this.$refs.audio1;
+          audio1.play();
+        }
       } else if (this.dEn > 0) {
         this.knight.life.energy[1] -= this.dEn;
       } else if (this.dEsp > 0) {
@@ -249,7 +261,8 @@ td {
 /* RIGHT */
 .stats2 {
   font-family: "Asap", Helvetica, sans-serif;
-  width: 60%;
+  width: 70%;
+  max-width: 1200px;
 }
 
 .points {
@@ -263,12 +276,12 @@ td {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  margin-top: 2em;
+  margin-top: 10px;
   min-width: 100px;
 }
 
 .point img {
-  width: 3.1em;
+  width: 50px;
   display: inline-block;
   vertical-align: middle;
 }
@@ -277,13 +290,12 @@ td {
   color: #fff;
   font-size: 0.9em;
   font-weight: 700;
-
-  padding: 0.2em;
-  margin-top: 0.2em;
-  border-radius: 0.2em;
+  padding: 3px;
+  margin-top: 5px;
+  border-radius: 3px;
   border: 1px solid #fff;
   background-color: rgba(255, 255, 255, 0.2);
-  width: 2.5em;
+  width: 35px;
   margin-left: 8px;
 }
 
@@ -322,14 +334,14 @@ td {
   background-color: rgba(0, 0, 0, 0.4);
   margin: 0 0.2em;
   padding: 0.5em;
-  min-width: 150px;
+  min-width: 110px;
   margin-top: 2em;
   flex-grow: 1;
 }
 
 .trait p:first-child {
   text-transform: uppercase;
-  font-size: 1.2em;
+  font-size: 1.1em;
   font-weight: 700;
   margin-bottom: 0.5em;
 }
@@ -337,7 +349,7 @@ td {
 .trait p:first-child span {
   color: #fff9c4;
   right: 0.5em;
-  font-size: 1.3em;
+  font-size: 1.2em;
   margin-right: 0;
 }
 
@@ -352,7 +364,8 @@ td {
 
 .trait img {
   width: 1.3em;
-  margin-right: 0.5em;
+  margin-right: 8px;
+  margin-top: -3px;
   vertical-align: middle;
 }
 
@@ -381,7 +394,6 @@ td {
   min-width: 150px;
   margin-top: 2em;
   flex-grow: 9;
-  height: 400px;
   padding: 1em;
 }
 
@@ -421,7 +433,6 @@ td {
   min-width: 150px;
   margin-top: 2em;
   flex-grow: 1;
-  height: 400px;
   padding: 1em;
 }
 
