@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 
-import OnePage from "./views/fiche.vue";
+import fiche from "./views/fiche.vue";
 import Empty from "./views/fiche.vue";
 
 Vue.use(Router);
@@ -12,8 +12,8 @@ export default new Router({
   routes: [
     {
       path: "/",
-      name: "OnePage",
-      component: OnePage,
+      name: "fiche",
+      component: fiche,
     },
     {
       // catch all 404 - define at the very end

@@ -1,19 +1,5 @@
 <template>
   <div>
-    <nav>
-      <h2>SECTION: {{ $store.state.section.name }}</h2>
-      <div id="team">
-        <div class="logo" style="margin-right: 15px;">
-          <img :src="$store.state.section.logo" alt="" />
-        </div>
-        <div id="teammates">
-          <a v-for="(member, i) in $store.state.section.members" :key="member.name" @click="goto(i)">
-            <img :src="armorFace($store.state.members[member].type)" alt="" />
-          </a>
-        </div>
-      </div>
-    </nav>
-
     <section class="content">
       <div class="knight">
         <table class="table">
@@ -55,21 +41,21 @@
 
         <div class="stats1">
           <div class="txtDefinitrea">
-            <p>{{ knight.stats.init }}</p>
+            <p class="value">{{ knight.stats.init }}</p>
             <p>INITIATIVE</p>
           </div>
           <div class="txtDefinitrea">
-            <p>{{ knight.stats.def }}</p>
+            <p class="value">{{ knight.stats.def }}</p>
             <p>DÉFENSE</p>
           </div>
           <div class="txtDefinitrea">
-            <p>{{ knight.stats.init }}</p>
+            <p class="value">{{ knight.stats.init }}</p>
             <p>RÉACTION</p>
           </div>
         </div>
       </div>
 
-      <div class="chiffres" style="border: 1px solid red;">
+      <div class="stats2">
         <div class="points">
           <div class="point" v-for="(ico, life) in $store.state.life" :key="life">
             <img :src="ico" alt="" />
@@ -80,7 +66,7 @@
           </div>
         </div>
 
-        <div style="border: 1px solid red;">
+        <div>
           <div class="traits">
             <div class="trait" v-for="(ico, aspect) in $store.state.aspects" :key="aspect">
               <p>
@@ -97,7 +83,9 @@
             </div>
           </div>
 
-          <div class="trait" style="height: 400px;  margin-top:2em;"></div>
+          <div class="dices">
+            <p><img src="../assets/icons/dice.svg" alt="" />Dés</p>
+          </div>
         </div>
       </div>
     </section>
@@ -107,6 +95,7 @@
 <script>
 export default {
   name: "home",
+
   data() {
     return {
       part: false,
@@ -118,74 +107,18 @@ export default {
     },
   },
   methods: {
-    armorFace(type) {
-      return this.$store.state.armors[type].face;
-    },
     armorImg(type) {
       return this.$store.state.armors[type].img;
-    },
-    goto(i) {
-      this.$store.state.current = this.$store.state.section.members[i];
     },
   },
 };
 </script>
 
-<style scoped>
-/* TOP */
-nav {
-  height: 4em;
-  background-color: rgba(0, 0, 0, 0.3);
-  display: inline-block;
-  width: 100%;
-  text-align: center;
-  overflow: hidden;
-}
-
-nav h2 {
-  display: inline-block;
-  vertical-align: middle;
-}
-
-nav h2 {
-  margin-left: 2em;
-}
-
-nav .logo,
-nav #team {
-  display: inline-block;
-  vertical-align: middle;
-  position: relative;
-}
-
-nav .logo img {
-  width: 2.5em;
-}
-
-nav .logo p {
-  position: absolute;
-  top: 0.75em;
-  margin-left: 0.7em;
-}
-
-nav #team {
-  margin-left: 6em;
-}
-
-nav #team a img {
-  max-width: 40px;
-  display: inline-block;
-}
-
-nav #team a img:hover {
-  opacity: 0.7;
-}
-
-nav #teammates {
-  display: inline-block;
-  vertical-align: middle;
-  border: 1px solid rgba(255, 255, 255, 0.8);
-}
+<style scoped lang="scss">
+$layout-breakpoint-small: 576px; //420px
+$layout-breakpoint-medium: 768px; //670px
+$layout-breakpoint-large: 992px; //880px
+$layout-breakpoint-extralarge: 1200px; //1040px
 
 .content {
   display: flex;
@@ -199,10 +132,15 @@ nav #teammates {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  height: 500px;
+  max-width: 400px;
+  margin-bottom: 300px;
 }
 
 .table {
   background-color: rgba(0, 0, 0, 0.5);
+  margin-left: 15px;
+  margin-right: 15px;
 }
 
 td {
@@ -218,64 +156,81 @@ td {
 }
 
 .stats1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
   padding-top: 1em;
-  width: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   border-top: 0.1em solid #ddd;
   padding: 1em 0 2em 0;
   font-size: 0.7em;
-}
-
-.knight > div:first-child p:first-child {
-  font-size: 1.5em;
-  text-align: center;
-  font-weight: 500;
+  margin-left: 15px;
+  margin-right: 15px;
 }
 
 .txtDefinitrea {
-  display: inline-block;
   color: white;
   font-size: 1em;
   font-weight: 400;
-  width: 30%;
   text-align: center;
 }
 
-.txtDefinitrea p:first-child {
+.txtDefinitrea .value {
   font-size: 3em;
   border-radius: 2em;
-  width: 1em;
   font-weight: 700;
   margin: 0.1em auto;
   text-align: center;
 }
 
+@media (max-width: $layout-breakpoint-medium) {
+  .content {
+    flex-direction: column;
+  }
+  .point {
+    padding: 0.5em;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  .points {
+    width: 100vw;
+  }
+  .traits {
+    width: 100vw;
+  }
+  .dices {
+    width: calc(100vw - 40px);
+  }
+}
+@media (min-width: $layout-breakpoint-medium) {
+  .content {
+    flex-direction: row;
+  }
+}
+
 /* RIGHT */
-.chiffres {
-  width: 60%;
-  display: inline-block;
-  vertical-align: top;
+.stats2 {
   font-family: "Asap", Helvetica, sans-serif;
+  width: 60%;
 }
 
 .points {
-  margin-top: 2em;
-  border: 1px solid blue;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
 }
 
 .point {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
+  margin-top: 2em;
   min-width: 100px;
-  border: 1px solid blue;
 }
 
 .point img {
-  width: 3em;
+  width: 3.1em;
   display: inline-block;
   vertical-align: middle;
 }
@@ -302,17 +257,19 @@ td {
 }
 
 .traits {
-  margin-top: 2em;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
 }
 
 .trait {
   background-color: rgba(0, 0, 0, 0.4);
   margin: 0 0.2em;
   padding: 0.5em;
-  min-width: 200px;
+  min-width: 150px;
+  margin-top: 2em;
+  flex-grow: 1;
 }
 
 .trait p:first-child {
@@ -341,7 +298,6 @@ td {
 .trait img {
   width: 1.3em;
   margin-right: 0.5em;
-  display: inline-block;
   vertical-align: middle;
 }
 
@@ -354,5 +310,45 @@ td {
 
 .firstMaj:first-letter {
   text-transform: uppercase;
+}
+
+.dices {
+  background-color: rgba(0, 0, 0, 0.4);
+  margin: 0 0.2em;
+  padding: 0.5em;
+  min-width: 150px;
+  margin-top: 2em;
+  flex-grow: 1;
+  height: 400px;
+  padding: 1em;
+}
+
+.dices p:first-child {
+  text-transform: uppercase;
+  font-size: 1.2em;
+  font-weight: 700;
+  margin-bottom: 0.5em;
+}
+
+.dices p:first-child span {
+  color: #fff9c4;
+  right: 0.5em;
+  font-size: 1.3em;
+  margin-right: 0;
+}
+
+.dices p {
+  line-height: 1.5em;
+}
+
+.dices p span {
+  float: right;
+  margin-right: 0.2em;
+}
+
+.dices img {
+  width: 2em;
+  margin-right: 0.5em;
+  vertical-align: middle;
 }
 </style>
