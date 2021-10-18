@@ -1,6 +1,11 @@
 # KnightDash
 
-Dashboard for Knight role play (dice rolls and stats)
+[WIP]
+Dashboard for Knight role play (stats, dice rolls and damages management).
+
+<p align="center">
+	<img src="https://raw.githubusercontent.com/dtanguy/KnightDash/master/src/assets/readme/1.jpg" width="80%">
+</p>
 
 ## Project setup
 
