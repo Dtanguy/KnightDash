@@ -28,8 +28,8 @@
         <img :src="$store.state.section.logo" alt="" />
       </div>
       <div class="teammates">
-        <a v-for="(member, i) in $store.state.section.members" :key="member.name" @click="goto(i)">
-          <img :src="armorFace($store.state.members[member].type)" alt="" />
+        <a v-for="(member, i) in $store.state.section.members" :key="i" @click="goto(i)">
+          <img :src="armorFace($store.state.members[member].infos.type)" alt="" />
         </a>
       </div>
     </div>

@@ -55,62 +55,68 @@ export default new Vuex.Store({
     members: {
       /* 1 */
       ecarlate: {
-        name: "ecarlate",
-        nom: "",
-        prenom: "",
-        ia: "ALISE",
-        section: "121",
-        blason: "",
-        type: "barbarian",
+        infos: {
+          chevalier: "ecarlate",
+          nom: "",
+          prenom: "",
+          IA: "ALISE",
+          section: "Giant",
+          blason: "Serpent",
+          type: "barbarian",
+        },
         life: {
-          cdf: [12, 0],
+          cdf: [12, 12],
           shield: [60, 60],
-          health: [46, 46],
+          health: [39, 39],
           energy: [60, 60],
+          hope: [50, 50],
           glory: [80, 80],
           mortarboard: [60, 60],
-          hope: [50, 50],
         },
-        stats: {
-          init: 5,
-          def: 1,
-          react: 1,
+        stats1: {
+          initiative: 3,
+          defense: 5,
+          reaction: 3,
+        },
+        stats2: {
           chair: {
-            val: 6,
-            deplacement: [3, 0],
-            force: [6, 1],
-            endurance: [4, 0]
+            val: 4,
+            deplacement: [2, 0],
+            force: [4, 1],
+            endurance: [4, 1]
           },
           bete: {
-            val: 4,
-            hargne: [3, 1],
-            combat: [4, 1],
+            val: 5,
+            hargne: [4, 1],
+            combat: [5, 1],
             instinct: [2, 0]
           },
           machine: {
-            val: 7,
-            tir: [1, 0],
-            savoir: [1, 0],
-            technique: [1, 0]
+            val: 4,
+            tir: [2, 0],
+            savoir: [4, 0],
+            technique: [4, 1]
           },
           dame: {
             val: 2,
             aura: [1, 0],
-            parole: [1, 0],
+            parole: [2, 1],
             sangfroid: [2, 0]
           },
           masque: {
             val: 3,
-            discretion: [1, 0],
-            dexterite: [1, 0],
-            perception: [1, 0]
+            discretion: [2, 0],
+            dexterite: [3, 0],
+            perception: [2, 0]
           }
         }
       },
       /* 2 */
       2: {
-        name: "2",
-        type: "bard",
+        infos: {
+          name: "2",
+          type: "bard",
+        },
         life: {
           cdf: [12, 0],
           shield: [60, 60],
@@ -150,8 +156,10 @@ export default new Vuex.Store({
       },
       /* 3 */
       3: {
-        name: "3",
-        type: "ranger",
+        infos: {
+          name: "3",
+          type: "ranger",
+        },
         life: {
           cdf: [12, 0],
           shield: [60, 60],
@@ -191,8 +199,10 @@ export default new Vuex.Store({
       },
       /* 4 */
       4: {
-        name: "4",
-        type: "rogue",
+        infos: {
+          name: "4",
+          type: "rogue",
+        },
         life: {
           cdf: [12, 0],
           shield: [60, 60],
@@ -232,8 +242,10 @@ export default new Vuex.Store({
       },
       /* 5 */
       5: {
-        name: "5",
-        type: "warmaster",
+        infos: {
+          name: "5",
+          type: "warmaster",
+        },
         life: {
           cdf: [12, 0],
           shield: [60, 60],
@@ -273,8 +285,10 @@ export default new Vuex.Store({
       },
       /* 6 */
       6: {
-        name: "6",
-        type: "warrior",
+        infos: {
+          name: "6",
+          type: "warrior",
+        },
         life: {
           cdf: [12, 0],
           shield: [60, 60],
