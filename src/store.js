@@ -7,7 +7,18 @@ SANTÉ = 10+6*[max(caractéristique de Chair sans OD)]
 DEFENSE =[max(caractéristique de Bête + OD])
 REACTION =[max(caractéristique de Machine + OD)] 
 INITIATIVE=[max(caractéristique de Masque + OD)]
- */
+
+
+TODO
+je pensais a la peur par exemple qui diminue de X dé
+ça serait un champ : "nb de dés de malus"
+de plus, il faudrait prévoir ptet un radio button pour le type de combat ?
+genre Défaut / Akimbo / Ambidextrie / Aggressif / Défensif-A couvert
+et il faut le bouton armur on/off pour activer ou pas les overdrive
+node soit / genade
+
+
+*/
 export default new Vuex.Store({
   state: {
     token: "",

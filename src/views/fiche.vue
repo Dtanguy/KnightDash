@@ -65,11 +65,11 @@
         <div>
           <div class="traits">
             <Card class="trait" v-for="(ico, aspect) in $store.state.svg.aspects" :key="aspect" :title="aspect" :titleNb="knight.carac[aspect].val" :ico="ico">
-              <p class="firstMaj" v-for="(val, name) in knight.carac[aspect]" :key="name" v-bind:class="{ testMode: testMode && name != 'val', selected: rollTest[name] }" @click="testDices(name, val)">
+              <p class="firstMaj" v-for="(val, name) in knight.carac[aspect]" :key="name" v-bind:class="{ testMode: name != 'val', selected: rollTest[name] }" @click="testDices(name, val)">
                 {{ name != "val" ? name : "" }}
                 <span v-if="name != 'val'">
                   {{ val[0] }}
-                  <sup class="od">{{ val[1] }}</sup>
+                  <sup class="od" v-bind:class="{ unfold: !unfold }">{{ val[1] }}</sup>
                 </span>
               </p>
             </Card>
@@ -77,12 +77,16 @@
 
           <div class="actions">
             <Card class="dices" :title="'dés'" :ico="require('@/assets/icons/dice.svg')" :icoSize="1.7" :padding="15">
+              <div style="float: right; margin-top:-30px; margin-right: 5px;">
+                <label class="dline1 firstMaj" style="margin-left:-10px; margin-right:10px;">Unfold:</label>
+                <label class="switch" style="float: right; margin-top:-2px; ">
+                  <input type="checkbox" v-model="unfold" />
+                  <span class="slider"></span>
+                </label>
+              </div>
+
               <div class="dline">
                 <label class="dline1 firstMaj" style="margin-top:10px;">Aspects:</label>
-                <!--label class="switch">
-                  <input type="checkbox" v-model="testMode" />
-                  <span class="slider"></span>
-                </label-->
               </div>
 
               <div class="trait_disp_container">
@@ -91,7 +95,7 @@
                     {{ name }}
                     <span style="margin-left:20px;">
                       {{ dice[0] }}
-                      <sup class="od">{{ dice[1] }}</sup>
+                      <sup class="od" v-bind:class="{ unfold: !unfold }">{{ dice[1] }}</sup>
                     </span>
                   </p>
                   <p style="font-size: 2em; display: inline-block; margin-left:10px;margin-right:10px;" v-if="i !== Object.keys(rollTest).length - 1">+</p>
@@ -169,6 +173,7 @@ export default {
       dEn: 0,
       dEsp: 0,
       testMode: true,
+      unfold: true,
       rollTest: {},
       rollRes: [0, 0],
     };
@@ -205,13 +210,7 @@ export default {
       return ["initiative", Math.max(v[0], v[1], v[2])];
     },
   },
-  watch: {
-    testMode(v) {
-      if (v == false) {
-        this.rollTest = {};
-      }
-    },
-  },
+  watch: {},
   methods: {
     armorImg(type) {
       return this.$store.state.svg.armors[type].img;
@@ -258,16 +257,16 @@ export default {
       this.dEsp = 0;
     },
     testDices(name, val) {
-      if (this.testMode) {
-        console.log(name + " " + val[0] + " " + val[1]);
-        if (!this.rollTest[name]) {
+      console.log(name + " " + val[0] + " " + val[1]);
+      if (!this.rollTest[name]) {
+        if (Object.keys(this.rollTest).length < 4) {
           this.rollTest[name] = val;
-        } else {
-          delete this.rollTest[name];
         }
-        console.log(this.rollTest);
-        this.$forceUpdate();
+      } else {
+        delete this.rollTest[name];
       }
+      console.log(this.rollTest);
+      this.$forceUpdate();
     },
     rollAspect() {
       let res = [0, 0];
@@ -570,5 +569,9 @@ td {
 
 .width100 {
   width: 100%;
+}
+
+.unfold {
+  background-color: red;
 }
 </style>
