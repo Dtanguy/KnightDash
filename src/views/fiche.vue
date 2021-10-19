@@ -227,6 +227,10 @@ export default {
         if (this.dPas - cdf > 0) {
           this.knight.life.armor[1] -= this.dPas - cdf;
           this.knight.life.health[1] -= Math.trunc((this.dPas - cdf) / 5);
+
+          if (this.knight.life.armor[1] < 1) {
+            this.knight.life.armor[1] = 0;
+          }
           let audio1 = this.$refs.audio1;
           audio1.play();
         } else {
@@ -237,6 +241,7 @@ export default {
         this.knight.life.health[1] -= this.dSan;
         if (this.knight.life.health[1] < 1) {
           let audio2 = this.$refs.audio2;
+          this.knight.life.health[1] = 0;
           audio2.play();
         } else {
           let audio1 = this.$refs.audio1;
@@ -244,10 +249,14 @@ export default {
         }
       } else if (this.dEn > 0) {
         this.knight.life.energy[1] -= this.dEn;
+        if (this.knight.life.energy[1] < 1) {
+          this.knight.life.energy[1] = 0;
+        }
       } else if (this.dEsp > 0) {
         this.knight.life.hope[1] -= this.dEsp;
         if (this.knight.life.hope[1] < 1) {
           let audio2 = this.$refs.audio2;
+          this.knight.life.hope[1] = 0;
           audio2.play();
         }
       }
