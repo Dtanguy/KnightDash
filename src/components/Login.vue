@@ -80,9 +80,6 @@ export default {
 
 <style scoped>
 .login {
-  margin: auto;
-  margin-top: 10%;
-  width: 500px;
   text-align: center;
 }
 
@@ -106,21 +103,5 @@ ul {
 
 li {
   margin-top: 15px;
-}
-
-@media screen and (max-width: 640px) {
-  .customButton {
-    font-size: 5em;
-  }
-
-  .container {
-    width: 90%;
-  }
-
-  .trio {
-    min-width: 200px;
-    width: 100%;
-    height: 100%;
-  }
 }
 </style>

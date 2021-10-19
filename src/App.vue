@@ -48,18 +48,21 @@ p {
     background: url("./assets/bg/bg-2.png");
     //background-size: cover;
   }
+  .logi {
+    margin: auto;
+  }
 }
 @media (min-width: $layout-breakpoint-medium) {
   #app {
     background: url("./assets/bg/bg-1.jpg");
     background-size: cover;
   }
-}
-
-.logi {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -85%);
+  .logi {
+    position: fixed;
+    width: 500px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
 </style>
