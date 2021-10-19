@@ -8,7 +8,21 @@
       <label><b>Password : </b></label>
       <input id="password" class="password" type="password" />
     </div>
-    <button class="button" v-on:click="login()">Login</button>
+    <div class="group">
+      <ul>
+        <li>I – Tu croiras à tout ce qu’enseigne Arthur et tu observeras ces commandements.</li>
+        <li>II – Tu protégeras le Knight au péril de ta vie.</li>
+        <li>III – Tu auras le respect de toutes les faiblesses humaines et tu t’en constitueras le défenseur contre l’Anathème et toutes les infamies.</li>
+        <li>IV – Tu aimeras et chériras l’art comme la lumière.</li>
+        <li>V – Tu ne reculeras jamais devant les ténèbres.</li>
+        <li>VI – Tu feras à l’Anathème une guerre sans trêve et sans merci.</li>
+        <li>VII – Tu t’acquitteras exactement des ordres que les chevaliers de la Table Ronde te donneront, excepté s’ils sont contraires aux commandements d’Arthur.</li>
+        <li>VIII – Tu seras fidèle à la parole que tu donnes et par-dessus tout, tu ne mentiras point à tes pairs.</li>
+        <li>IX – Tu seras généreux et tu feras ton possible pour aider ceux qui sont dans le besoin.</li>
+        <li>X – Tu seras, partout et toujours, le champion de l’Humanité contre l’injustice, le désespoir et le mal.</li>
+      </ul>
+    </div>
+    <button class="button" v-on:click="login()">Soyez Prompt et Sans Pitié</button>
   </Card>
 </template>
 
@@ -64,10 +78,11 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .login {
-  width: 300px;
+  margin: auto;
+  margin-top: 10%;
+  width: 500px;
   text-align: center;
 }
 
@@ -77,10 +92,21 @@ export default {
   margin-left: 0px;
 }
 button {
+  margin-top: 25px;
   text-transform: uppercase;
   font-size: 1.1em;
-  width: 265px;
-  margin: 10px;
+  width: 100%;
+}
+
+ul {
+  font-size: 0.85em;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  margin-top: 15px;
 }
 
 @media screen and (max-width: 640px) {

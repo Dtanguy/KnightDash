@@ -57,10 +57,9 @@ p {
 }
 
 .logi {
-  color: black;
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -80%);
+  transform: translate(-50%, -85%);
 }
 </style>
