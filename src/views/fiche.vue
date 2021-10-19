@@ -187,25 +187,25 @@ export default {
     },
     defence() {
       let v = [0, 0, 0];
-      v[0] = this.knight.carac.bete.hargne[0] + this.knight.carac.bete.hargne[1];
-      v[1] = this.knight.carac.bete.combat[0] + this.knight.carac.bete.combat[1];
-      v[2] = this.knight.carac.bete.instinct[0] + this.knight.carac.bete.instinct[1];
+      v[0] = this.knight.carac.bete.hargne[0] + (this.unfold ? this.knight.carac.bete.hargne[1] : 0);
+      v[1] = this.knight.carac.bete.combat[0] + (this.unfold ? this.knight.carac.bete.combat[1] : 0);
+      v[2] = this.knight.carac.bete.instinct[0] + (this.unfold ? this.knight.carac.bete.instinct[1] : 0);
       Math.max(v[0], v[1], v[2]);
       return ["defences", Math.max(v[0], v[1], v[2])];
     },
     reaction() {
       let v = [0, 0, 0];
-      v[0] = this.knight.carac.machine.tir[0] + this.knight.carac.machine.tir[1];
-      v[1] = this.knight.carac.machine.savoir[0] + this.knight.carac.machine.savoir[1];
-      v[2] = this.knight.carac.machine.technique[0] + this.knight.carac.machine.technique[1];
+      v[0] = this.knight.carac.machine.tir[0] + (this.unfold ? this.knight.carac.machine.tir[1] : 0);
+      v[1] = this.knight.carac.machine.savoir[0] + (this.unfold ? this.knight.carac.machine.savoir[1] : 0);
+      v[2] = this.knight.carac.machine.technique[0] + (this.unfold ? this.knight.carac.machine.technique[1] : 0);
       Math.max(v[0], v[1], v[2]);
       return ["reaction", Math.max(v[0], v[1], v[2])];
     },
     initiative() {
       let v = [0, 0, 0];
-      v[0] = this.knight.carac.masque.discretion[0] + this.knight.carac.masque.discretion[1];
-      v[1] = this.knight.carac.masque.dexterite[0] + this.knight.carac.masque.dexterite[1];
-      v[2] = this.knight.carac.masque.perception[0] + this.knight.carac.masque.perception[1];
+      v[0] = this.knight.carac.masque.discretion[0] + (this.unfold ? this.knight.carac.masque.discretion[1] : 0);
+      v[1] = this.knight.carac.masque.dexterite[0] + (this.unfold ? this.knight.carac.masque.dexterite[1] : 0);
+      v[2] = this.knight.carac.masque.perception[0] + (this.unfold ? this.knight.carac.masque.perception[1] : 0);
       Math.max(v[0], v[1], v[2]);
       return ["initiative", Math.max(v[0], v[1], v[2])];
     },
