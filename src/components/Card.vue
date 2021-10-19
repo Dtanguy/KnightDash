@@ -18,6 +18,7 @@ export default {
     title: String,
     titleNb: Number,
     padding: Number,
+    style: String,
   },
 };
 </script>
@@ -50,7 +51,7 @@ $color-card-bg: rgba(0, 0, 0, 0.4);
 }
 
 .cardIco {
-  width: 1.3em;
+  width: 1.5em;
   margin-right: 8px;
   margin-top: -3px;
   vertical-align: middle;
@@ -85,7 +86,6 @@ $color-card-bg: rgba(0, 0, 0, 0.4);
 
 /* BUTTON */
 .button {
-  margin-top: 35px;
   border: none;
   padding: 10px;
   color: $color-white;

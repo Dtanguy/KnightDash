@@ -125,6 +125,7 @@
                 <label class="dline1 firstMaj">espoir:</label>
                 <input class="dline2" type="number" min="0" max="1000" v-model="dEsp" />
               </div>
+              <div style="flex-grow:1;"></div>
               <button class="button width100" @click="dealDamage()">
                 {{ `Hit me daddy ❤️` }}
               </button>
@@ -135,6 +136,7 @@
 
       <audio ref="audio1" src="@/assets/audio/roblox-death-sound.mp3" preload muted style="display: hidden;"></audio>
       <audio ref="audio2" src="@/assets/audio/wilhelm.wav" preload muted style="display: hidden;"></audio>
+      <audio ref="audio3" src="@/assets/audio/impact-metal.mp3" preload muted style="display: hidden;"></audio>
     </section>
   </div>
 </template>
@@ -181,10 +183,15 @@ export default {
     dealDamage() {
       if (this.dPas > 0) {
         let cdf = this.knight.life.cdf[0];
-        this.knight.life.shield[1] -= this.dPas - cdf;
-        this.knight.life.health[1] -= Math.trunc((this.dPas - cdf) / 5);
-        let audio1 = this.$refs.audio1;
-        audio1.play();
+        if (this.dPas - cdf > 0) {
+          this.knight.life.shield[1] -= this.dPas - cdf;
+          this.knight.life.health[1] -= Math.trunc((this.dPas - cdf) / 5);
+          let audio1 = this.$refs.audio1;
+          audio1.play();
+        } else {
+          let audio3 = this.$refs.audio3;
+          audio3.play();
+        }
       } else if (this.dSan > 0) {
         this.knight.life.health[1] -= this.dSan;
         if (this.knight.life.health[1] < 1) {
@@ -316,6 +323,9 @@ td {
   .content {
     flex-direction: column;
   }
+  .stats2 {
+    margin-top: 20px;
+  }
   .point {
     padding: 0.5em;
     background-color: $color-card-bg;
@@ -354,7 +364,7 @@ td {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  margin-top: 10px;
+  margin-top: 3%;
   min-width: 100px;
 }
 
@@ -473,6 +483,13 @@ td {
 .dline2 {
   width: 50%;
   min-width: 50px;
+  color: $color-white;
+  font-size: 0.9em;
+  font-weight: 700;
+  padding: 3px;
+  border-radius: 3px;
+  border: 1px solid $color-white;
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 .testMode {

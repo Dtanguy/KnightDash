@@ -101,7 +101,7 @@ export default new Vuex.Store({
           dame: {
             val: 2,
             aura: [1, 0],
-            parole: [2, 1],
+            parole: [2, 0],
             "sang-froid": [2, 0]
           },
           masque: {
