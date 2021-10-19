@@ -225,7 +225,7 @@ export default {
       if (this.dPas > 0) {
         let cdf = this.knight.life.cdf[0];
         if (this.dPas - cdf > 0) {
-          this.knight.life.shield[1] -= this.dPas - cdf;
+          this.knight.life.armor[1] -= this.dPas - cdf;
           this.knight.life.health[1] -= Math.trunc((this.dPas - cdf) / 5);
           let audio1 = this.$refs.audio1;
           audio1.play();
