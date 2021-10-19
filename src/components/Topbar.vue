@@ -21,15 +21,15 @@
     <!-- mobile -->
     <div class="fixe"></div>
 
-    <h2 class="title fixe">COTERIE: {{ $store.state.coteries.name }}</h2>
+    <h2 class="title fixe">COTERIE: {{ $store.state.currentCoteries }}</h2>
 
     <div class="team fixe">
       <div class="logo">
-        <img :src="$store.state.coteries.logo" alt="" />
+        <img :src="$store.state.svg.coteries" />
       </div>
       <div class="teammates">
-        <a v-for="(member, i) in $store.state.coteries.members" :key="i" @click="goto(i)">
-          <img :src="armorFace($store.state.members[member].infos.type)" alt="" />
+        <a v-for="(member, i) in $store.state.coteries[$store.state.currentCoteries].members" :key="i" @click="goto(i)">
+          <img :src="armorFace($store.state.members[member].infos.type)" />
         </a>
       </div>
     </div>
@@ -46,10 +46,11 @@ export default {
   },
   methods: {
     armorFace(type) {
-      return this.$store.state.armors[type].face;
+      return this.$store.state.svg.armors[type].face;
     },
     goto(i) {
-      this.$store.state.current = this.$store.state.section.members[i];
+      let c = this.$store.state.currentCoteries;
+      this.$store.state.currentKnight = this.$store.state.coteries[c].members[i];
     },
   },
 };

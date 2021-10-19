@@ -27,7 +27,7 @@
       <!-- RIGHT -->
       <div class="stats2">
         <div class="points">
-          <div class="point" v-for="(ico, life) in $store.state.life" :key="life">
+          <div class="point" v-for="(ico, life) in $store.state.svg.life" :key="life">
             <img :src="ico" alt="" />
             <div class="nav-data">
               <p>{{ knight.life[life][0] }}</p>
@@ -49,7 +49,7 @@
 
         <div>
           <div class="traits">
-            <Card class="trait" v-for="(ico, aspect) in $store.state.aspects" :key="aspect" :title="aspect" :titleNb="knight.stats2[aspect].val" :ico="ico">
+            <Card class="trait" v-for="(ico, aspect) in $store.state.svg.aspects" :key="aspect" :title="aspect" :titleNb="knight.stats2[aspect].val" :ico="ico">
               <p class="firstMaj" v-for="(val, name) in knight.stats2[aspect]" :key="name" v-bind:class="{ testMode: testMode && name != 'val', selected: rollTest[name] }" @click="testDices(name, val)">
                 {{ name != "val" ? name : "" }}
                 <span v-if="name != 'val'">
@@ -160,7 +160,7 @@ export default {
   },
   computed: {
     knight() {
-      return this.$store.state.members[this.$store.state.current];
+      return this.$store.state.members[this.$store.state.currentKnight];
     },
   },
   watch: {
@@ -172,7 +172,7 @@ export default {
   },
   methods: {
     armorImg(type) {
-      return this.$store.state.armors[type].img;
+      return this.$store.state.svg.armors[type].img;
     },
     editPsa() {
       this.dSan = Math.trunc(this.dPas / 5);

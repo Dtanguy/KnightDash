@@ -1,15 +1,18 @@
 <template>
   <div id="app">
-    <Topbar class="Topbar" />
-    <router-view />
+    <Topbar class="Topbar" v-if="$store.state.token != ''" />
+    <Login class="logi" v-if="$store.state.token == ''" />
+    <router-view v-if="$store.state.token != ''" />
   </div>
 </template>
 
 <script>
 import Topbar from "@/components/Topbar";
+import Login from "@/components/Login";
+
 export default {
   name: "App",
-  components: { Topbar },
+  components: { Topbar, Login },
 };
 </script>
 
@@ -51,5 +54,13 @@ p {
     background: url("./assets/bg/bg-1.jpg");
     background-size: cover;
   }
+}
+
+.logi {
+  color: black;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -80%);
 }
 </style>

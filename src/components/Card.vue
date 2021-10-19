@@ -18,7 +18,6 @@ export default {
     title: String,
     titleNb: Number,
     padding: Number,
-    style: String,
   },
 };
 </script>
