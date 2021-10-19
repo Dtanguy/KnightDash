@@ -1,14 +1,6 @@
 <template>
-  <Card class="login" :title="'Connection'" :ico="require('@/assets/icons/team.svg')" :icoSize="2" :padding="15" v-on:keyup="handleKey">
-    <div class="group">
-      <label><b>Endpoint : </b></label>
-      <input id="endpoint" class="username" type="text" />
-    </div>
-    <div class="group">
-      <label><b>Password : </b></label>
-      <input id="password" class="password" type="password" />
-    </div>
-    <div class="group">
+  <Card class="login" :title="'Arthur requiert votre présence'" :ico="require('@/assets/icons/team.svg')" :icoSize="2" :padding="15" v-on:keyup="handleKey">
+    <div class="group" style="margin-top:25px;">
       <ul>
         <li>I – Tu croiras à tout ce qu’enseigne Arthur et tu observeras ces commandements.</li>
         <li>II – Tu protégeras le Knight au péril de ta vie.</li>
@@ -21,6 +13,14 @@
         <li>IX – Tu seras généreux et tu feras ton possible pour aider ceux qui sont dans le besoin.</li>
         <li>X – Tu seras, partout et toujours, le champion de l’Humanité contre l’injustice, le désespoir et le mal.</li>
       </ul>
+    </div>
+    <div class="group" style="margin-top:25px;">
+      <label><b>Endpoint : </b></label>
+      <input id="endpoint" class="username" type="text" />
+    </div>
+    <div class="group">
+      <label><b>Password : </b></label>
+      <input id="password" class="password" type="password" />
     </div>
     <button class="button" v-on:click="login()">Soyez Prompt et Sans Pitié</button>
   </Card>
@@ -92,7 +92,6 @@ export default {
   margin-left: 0px;
 }
 button {
-  margin-top: 25px;
   text-transform: uppercase;
   font-size: 1.1em;
   width: 100%;
