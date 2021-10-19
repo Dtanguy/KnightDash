@@ -2,6 +2,12 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 Vue.use(Vuex)
+/*
+SANTÉ = 10+6*[max(caractéristique de Chair sans OD)]
+DEFENSE =[max(caractéristique de Bête + OD])
+REACTION =[max(caractéristique de Machine + OD)] 
+INITIATIVE=[max(caractéristique de Masque + OD)]
+ */
 export default new Vuex.Store({
   state: {
     token: "",

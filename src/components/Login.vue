@@ -1,5 +1,5 @@
 <template>
-  <div class="login" v-on:keyup="handleKey">
+  <Card class="login" :title="'Connection'" :ico="require('@/assets/icons/team.svg')" :icoSize="2" :padding="15" v-on:keyup="handleKey">
     <div class="group">
       <label><b>Endpoint : </b></label>
       <input id="endpoint" class="username" type="text" />
@@ -9,15 +9,17 @@
       <input id="password" class="password" type="password" />
     </div>
     <button class="button" v-on:click="login()">Login</button>
-  </div>
+  </Card>
 </template>
 
 <script>
+import Card from "@/components/Card";
 export default {
   name: "Topbar",
   props: {
     title: String,
   },
+  components: { Card },
   data: function() {
     return {};
   },
@@ -65,12 +67,8 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .login {
-  box-shadow: 0px 0px 4px grey;
-  padding: 15px;
-  margin-bottom: 0px;
-  text-align: center;
   width: 300px;
-  background-color: #fafafa;
+  text-align: center;
 }
 
 .group {
@@ -78,26 +76,11 @@ export default {
   margin: 10px;
   margin-left: 0px;
 }
-
-.checklabel {
-  margin-right: 10px;
-}
-
 button {
-  border-radius: 3px;
-  padding: 10px;
-  border: none;
-  color: white;
   text-transform: uppercase;
   font-size: 1.1em;
-  background-color: #b8b8b8;
   width: 265px;
   margin: 10px;
-}
-
-button:hover {
-  background-color: #42b983;
-  cursor: Pointer;
 }
 
 @media screen and (max-width: 640px) {
