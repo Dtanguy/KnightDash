@@ -186,7 +186,7 @@ export default {
       v[1] = this.knight.carac.bete.combat[0] + this.knight.carac.bete.combat[1];
       v[2] = this.knight.carac.bete.instinct[0] + this.knight.carac.bete.instinct[1];
       Math.max(v[0], v[1], v[2]);
-      return ["defence", Math.max(v[0], v[1], v[2])];
+      return ["defences", Math.max(v[0], v[1], v[2])];
     },
     reaction() {
       let v = [0, 0, 0];
@@ -247,6 +247,10 @@ export default {
         this.knight.life.energy[1] -= this.dEn;
       } else if (this.dEsp > 0) {
         this.knight.life.hope[1] -= this.dEsp;
+        if (this.knight.life.hope[1] < 1) {
+          let audio2 = this.$refs.audio2;
+          audio2.play();
+        }
       }
       this.dPas = 0;
       this.dSan = 0;
