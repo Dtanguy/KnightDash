@@ -102,13 +102,21 @@ export default new Vuex.Store({
             val: 2,
             aura: [1, 0],
             parole: [2, 1],
-            sangfroid: [2, 0]
+            "sang-froid": [2, 0]
           },
           masque: {
             val: 3,
             discretion: [2, 0],
-            dexterite: [3, 0],
+            "dextérité": [3, 0],
             perception: [2, 0]
+          }
+        },
+        dices: {
+          "ceste lourd akimbo": {
+
+          },
+          "Environement": {
+
           }
         }
       },
