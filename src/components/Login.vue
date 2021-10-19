@@ -83,7 +83,6 @@ export default {
 .login {
   text-align: center;
 }
-
 .group {
   width: 100%;
   margin: 10px;

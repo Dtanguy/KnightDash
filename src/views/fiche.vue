@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="fiche">
     <section class="content">
       <!-- LEFT -->
       <div class="knight">
@@ -163,7 +163,7 @@
 <script>
 import Card from "@/components/Card";
 export default {
-  name: "home",
+  name: "fiche",
   components: { Card },
   data() {
     return {
@@ -299,17 +299,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-$layout-breakpoint-small: 576px; //420px
-$layout-breakpoint-medium: 768px; //670px
-$layout-breakpoint-large: 992px; //880px
-$layout-breakpoint-extralarge: 1200px; //1040px
-
-$color-green: #00ff00;
-$color-white: #fff;
-$color-orange: #ffb900;
-$color-red: #ff3200;
-$color-yellow: #fff9c4;
-$color-card-bg: rgba(0, 0, 0, 0.4);
+@import "@/global.scss";
 
 .content {
   display: flex;

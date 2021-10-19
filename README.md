@@ -2,6 +2,7 @@
 
 [WIP]
 Dashboard for Knight role play (stats, dice rolls and damages management).
+Backend here: https://github.com/Dtanguy/knightBack
 
 <p align="center">
 	<img src="https://raw.githubusercontent.com/dtanguy/KnightDash/master/src/assets/readme/1.jpg" width="100%">

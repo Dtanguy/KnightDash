@@ -1,29 +1,18 @@
 <template>
   <nav class="topbar">
-    <!-- mobile -->
-    <div class="mobile">
-      <a class="icon" v-on:click="hide = !hide">
-        <i class="fa fa-bars"></i>
+    <a class="icon" v-on:click="hide = !hide">
+      <i class="fa fa-bars"></i>
+    </a>
+    <div class="menu" v-if="hide">
+      <a class="nav-item2 item-support" href="/fiche">
+        <span>Fiche</span>
       </a>
-      <div id="myLinks" v-if="hide">
-        <a class="nav-item2 item-support" href="/">
-          <span>Personnage</span>
-        </a>
-        <a class="nav-item2 item-support" href="/">
-          <span>Stats</span>
-        </a>
-        <a class="nav-item2 item-support" href="/">
-          <span>Equipement</span>
-        </a>
-      </div>
+      <a class="nav-item2 item-support" href="/arsenal">
+        <span>Arsenal</span>
+      </a>
     </div>
-
-    <!-- mobile -->
-    <div class="fixe"></div>
-
     <h2 class="title fixe">COTERIE: {{ $store.state.currentCoteries }}</h2>
-
-    <div class="team fixe">
+    <div class="team">
       <div class="logo">
         <img :src="$store.state.svg.coteries" />
       </div>
@@ -69,12 +58,17 @@ $layout-breakpoint-extralarge: 1200px; //1040px
   height: 65px;
   background-color: rgba(0, 0, 0, 0.3);
   margin-bottom: 20px;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .title {
   display: inline-block;
   vertical-align: middle;
-  margin-left: 100px;
+  margin-left: 50px;
 }
 
 .logo {
@@ -120,26 +114,36 @@ $layout-breakpoint-extralarge: 1200px; //1040px
   .fixe {
     display: none;
   }
+  .menu {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 1);
+    border-top: 1px solid #c2c2c2;
+    width: 100vw;
+    top: 65px;
+  }
 }
 @media (min-width: $layout-breakpoint-medium) {
   .mobile {
     display: none;
+  }
+  .menu {
+    position: fixed;
+    width: 200px;
   }
 }
 
 .icon {
   position: relative;
   left: 15px;
-  top: 12px;
+  top: 10px;
   font-size: 2.3em;
   padding-bottom: 50px;
 }
 
-.myLinks {
+.menu {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  margin-top: 50px;
 }
 
 .nav-item2 {
@@ -150,8 +154,8 @@ $layout-breakpoint-extralarge: 1200px; //1040px
   font-size: 17px;
   font-weight: 400;
   padding: 0 20px;
-  background-color: rgb(0, 0, 0);
-  border-top: 1px solid #c2c2c2;
+  background-color: rgba(0, 0, 0, 0.8);
+  border: 1px solid #c2c2c2;
   display: inline-block;
   line-height: 50px;
   vertical-align: middle;
