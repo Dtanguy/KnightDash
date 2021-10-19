@@ -24,12 +24,12 @@ export default new Vuex.Store({
       },
       life: {
         cdf: require("@/assets/icons/cdf.svg"),
-        shield: require("@/assets/icons/shield.svg"),
+        armor: require("@/assets/icons/shield.svg"),
         health: require("@/assets/icons/health.svg"),
         energy: require("@/assets/icons/energy.svg"),
-        glory: require("@/assets/icons/glory.svg"),
-        mortarboard: require("@/assets/icons/mortarboard.svg"),
         hope: require("@/assets/icons/hope.svg"),
+        glory: require("@/assets/icons/glory.svg"),
+        experience: require("@/assets/icons/mortarboard.svg"),
       },
       coteries: require("@/assets/icons/team.svg"),
       armors: {

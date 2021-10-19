@@ -59,7 +59,8 @@ export default {
             let tmp = JSON.parse(JSON.stringify(response.data));
             this.$store.state.coteries = tmp.coteries;
             this.$store.state.members = tmp.members;
-
+            this.$store.state.currentCoteries = tmp.coteries[Object.keys(tmp.coteries)[0]].name;
+            this.$store.state.currentKnight = tmp.members[Object.keys(tmp.members)[0]].infos.chevalier;
             this.$store.state.token = response.data.token;
             sessionStorage.setItem("IDtoken", this.token);
           })

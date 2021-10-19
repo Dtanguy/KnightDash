@@ -17,9 +17,24 @@
         </table>
         <img class="knightImg" :src="armorImg(knight.infos.type)" />
         <div class="stats1">
-          <div class="S1" v-for="(stat, i) in knight.stats1" :key="i">
+          <!--div class="S1" v-for="(stat, i) in knight.stats1" :key="i">
             <p class="S1value">{{ stat }}</p>
             <p class="S1name">{{ i }}</p>
+          </div-->
+
+          <div class="S1">
+            <p class="S1value">{{ defence[1] }}</p>
+            <p class="S1name">{{ defence[0] }}</p>
+          </div>
+
+          <div class="S1">
+            <p class="S1value">{{ reaction[1] }}</p>
+            <p class="S1name">{{ reaction[0] }}</p>
+          </div>
+
+          <div class="S1">
+            <p class="S1value">{{ initiative[1] }}</p>
+            <p class="S1name">{{ initiative[0] }}</p>
           </div>
         </div>
       </div>
@@ -49,8 +64,8 @@
 
         <div>
           <div class="traits">
-            <Card class="trait" v-for="(ico, aspect) in $store.state.svg.aspects" :key="aspect" :title="aspect" :titleNb="knight.stats2[aspect].val" :ico="ico">
-              <p class="firstMaj" v-for="(val, name) in knight.stats2[aspect]" :key="name" v-bind:class="{ testMode: testMode && name != 'val', selected: rollTest[name] }" @click="testDices(name, val)">
+            <Card class="trait" v-for="(ico, aspect) in $store.state.svg.aspects" :key="aspect" :title="aspect" :titleNb="knight.carac[aspect].val" :ico="ico">
+              <p class="firstMaj" v-for="(val, name) in knight.carac[aspect]" :key="name" v-bind:class="{ testMode: testMode && name != 'val', selected: rollTest[name] }" @click="testDices(name, val)">
                 {{ name != "val" ? name : "" }}
                 <span v-if="name != 'val'">
                   {{ val[0] }}
@@ -161,6 +176,33 @@ export default {
   computed: {
     knight() {
       return this.$store.state.members[this.$store.state.currentKnight];
+    },
+    maxSan() {
+      return 0;
+    },
+    defence() {
+      let v = [0, 0, 0];
+      v[0] = this.knight.carac.bete.hargne[0] + this.knight.carac.bete.hargne[1];
+      v[1] = this.knight.carac.bete.combat[0] + this.knight.carac.bete.combat[1];
+      v[2] = this.knight.carac.bete.instinct[0] + this.knight.carac.bete.instinct[1];
+      Math.max(v[0], v[1], v[2]);
+      return ["defence", Math.max(v[0], v[1], v[2])];
+    },
+    reaction() {
+      let v = [0, 0, 0];
+      v[0] = this.knight.carac.machine.tir[0] + this.knight.carac.machine.tir[1];
+      v[1] = this.knight.carac.machine.savoir[0] + this.knight.carac.machine.savoir[1];
+      v[2] = this.knight.carac.machine.technique[0] + this.knight.carac.machine.technique[1];
+      Math.max(v[0], v[1], v[2]);
+      return ["reaction", Math.max(v[0], v[1], v[2])];
+    },
+    initiative() {
+      let v = [0, 0, 0];
+      v[0] = this.knight.carac.masque.discretion[0] + this.knight.carac.masque.discretion[1];
+      v[1] = this.knight.carac.masque.dexterite[0] + this.knight.carac.masque.dexterite[1];
+      v[2] = this.knight.carac.masque.perception[0] + this.knight.carac.masque.perception[1];
+      Math.max(v[0], v[1], v[2]);
+      return ["initiative", Math.max(v[0], v[1], v[2])];
     },
   },
   watch: {
@@ -383,7 +425,7 @@ td {
   border-radius: 3px;
   border: 1px solid $color-white;
   background-color: rgba(255, 255, 255, 0.2);
-  width: 35px;
+  width: 40px;
   margin-left: 8px;
 }
 
