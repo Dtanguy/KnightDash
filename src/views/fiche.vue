@@ -285,10 +285,7 @@ export default {
         }
         res[0] -= this.rollTest[aspect][0];
         if (this.unfold) {
-          for (let i = 0; i < this.rollTest[aspect][1]; i++) {
-            res[1] += this.getRnd(1, 2);
-          }
-          res[1] -= this.rollTest[aspect][1];
+          res[1] += this.rollTest[aspect][1];
         }
       }
       this.rollRes = res;
