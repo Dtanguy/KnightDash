@@ -105,7 +105,7 @@
                   {{ `Roll that 🎲` }}
                   <span style="margin-left:20px;">
                     {{ this.rollRes[0] }}
-                    <sup class="od">{{ this.rollRes[1] }}</sup>
+                    <sup class="od" v-bind:class="{ unfold: !unfold }">{{ this.rollRes[1] }}</sup>
                   </span>
                 </p>
               </div>
@@ -120,7 +120,7 @@
                     {{ `Roll that 🎲` }}
                     <span style="margin-left:20px;">
                       {{ 0 }}
-                      <sup class="od">{{ 0 }}</sup>
+                      <sup class="od" v-bind:class="{ unfold: !unfold }">{{ 0 }}</sup>
                     </span>
                   </p>
                 </div>
@@ -271,10 +271,22 @@ export default {
     rollAspect() {
       let res = [0, 0];
       for (let aspect in this.rollTest) {
-        res[0] += this.rollTest[aspect][0];
-        res[1] += this.rollTest[aspect][1];
+        for (let i = 0; i < this.rollTest[aspect][0]; i++) {
+          res[0] += this.getRnd(1, 2);
+        }
+        res[0] -= this.rollTest[aspect][0];
+        if (this.unfold) {
+          for (let i = 0; i < this.rollTest[aspect][1]; i++) {
+            res[1] += this.getRnd(1, 2);
+          }
+          res[1] -= this.rollTest[aspect][1];
+        }
       }
       this.rollRes = res;
+    },
+    getRnd(min, max) {
+      max += 1;
+      return Math.floor(Math.random() * (max - min)) + min;
     },
   },
 };
