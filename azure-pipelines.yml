@@ -9,17 +9,17 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-- task: CmdLine@2
-  inputs:
-    script: |
-      rm .env
-      mv .env_prod .env
-
 steps:
 - task: NodeTool@0
   inputs:
     versionSpec: '10.x'
   displayName: 'Install Node.js'
+
+- task: CmdLine@2
+  inputs:
+    script: |
+      rm .env
+      mv .env_prod .env
 
 - script: |
     npm install
