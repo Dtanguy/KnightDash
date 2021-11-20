@@ -15,12 +15,6 @@ steps:
     versionSpec: '10.x'
   displayName: 'Install Node.js'
 
-- task: CmdLine@2
-  inputs:
-    script: |
-      rm .env
-      mv .env_prod .env
-
 - script: |
     npm install
     npm run build
