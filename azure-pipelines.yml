@@ -9,13 +9,6 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-
-- task: CmdLine@2
-  inputs:
-    script: |
-      rm .env
-      mv .env_prod .env
-
 steps:
 - task: NodeTool@0
   inputs:
@@ -27,12 +20,12 @@ steps:
     npm run build
   displayName: 'npm install and build'
 
-
 - task: CmdLine@2
   inputs:
     script: |
       mv package_server.json dist/package.json
       mv server_azure.js dist/server.js
+
 - task: ArchiveFiles@2
   inputs:
     rootFolderOrFile: 'dist'
@@ -40,6 +33,7 @@ steps:
     archiveType: 'zip'
     archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
     replaceExistingArchive: true
+
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
